@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
 
 const NavBar = () => {
     return(
-        <h1><Link to={`/`}>Home</Link></h1>
+        <>
+            <Link to='/'>Home</Link>
+            <Link to='/festivals'>All</Link>
+
+        </>
     )
 }
 
-export default NavBar;
+export default NavBar
