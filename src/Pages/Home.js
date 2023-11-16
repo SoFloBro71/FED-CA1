@@ -1,10 +1,13 @@
 import LoginFrom from "../Components/LoginForm";
 
-const Home = () => {
+const Home = ({ authenticated, onAuthenticated }) => {
     return(
         <>
-            <h3>This is the Home Page</h3>
-            <LoginFrom/>
+            <h3>Home</h3>
+            {(!authenticated) ? (
+            <LoginFrom authenticated={authenticated} onAuthenticated={onAuthenticated}/>
+            ) : ( <p>You are Authenticated</p>)
+            }
 
         </>
     )

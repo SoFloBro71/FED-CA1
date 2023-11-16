@@ -7,30 +7,32 @@ const Show = () => {
     const {id} = useParams();
     const [festival, setFestival] = useState(null);
 
+    let token = localStorage.getItem('token');
+
     useEffect(() => {
         axios.get(`https://festivals-api.vercel.app/api/festivals/${id}`, {
             headers: {
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im4wMDIxMTAxM0BpYWR0LmllIiwiZnVsbF9uYW1lIjoiSGFubmFoIiwiX2lkIjoiNjU0Y2NlNmM1NmEwMWUwMDA4OGE2YTUwIiwiaWF0IjoxNjk5NTMyNDAxfQ.iKbrcWuCSoP-dp_5dYjcFXZHtHR68teMFyiDDxChEzU`
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(response => {
                 console.log(response.data);
-                setFestivals(response.data);
+                setFestival(response.data);
             })
 
             .catch(err => {
                 console.log(err);
             });
-    }, [])
+    }, [id, token])
 
-    if(!festival) return <h3>Festival not Found</h3>;
+    if(!festival) return <h3>Festival not Found</h3>
 
     return(
         <>
             <h2>Festival: {id}</h2>
             <div>
-                <p><b>Title:</b> {festival.title} </p>;
-                <p><b>Description:</b> {festival.description}</p>;
+                <p><b>Title:</b> {festival.title} </p>
+                <p><b>Description:</b> {festival.description}</p>
                 <hr/>
             </div>
         </>

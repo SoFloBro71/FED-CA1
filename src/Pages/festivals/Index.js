@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 
-const Index = () => {
+const Index = ({ authenticate }) => {
 
     const [festivals, setFestivals] = useState([]);
 
@@ -25,8 +25,9 @@ const Index = () => {
     const festivalsList = festivals.map(festival => {
         return(
             <div key={festival._id}>
-                <p><b>Title:</b><Link to={`/festivals/${festivals._id}`}> {festival.title}</Link> </p>;
-                <p><b>Description:</b> {festival.description}</p>;
+
+                {(authenticate) ? (<p><b>Title:</b> {festival.title} </p>) : (<p><b>Title:</b><Link to={`/festivals/${festival._id}`}> {festival.title}</Link> </p>)}
+                <p><b>Description:</b> {festival.description}</p>
                 <hr/>
             </div>
         )
